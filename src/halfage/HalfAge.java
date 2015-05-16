@@ -14,7 +14,9 @@ public class HalfAge {
     public static void main(String[] args) {
         
         HalfAge halfAge = new HalfAge();
-        String halfDate = halfAge.makeDateReadable();
+        String halfDate = "";
+        
+        
         
         System.out.println("The younger person will be half the age of the older person on " + halfDate);
     }
@@ -44,9 +46,7 @@ public class HalfAge {
     public Date captureDate(String message){
         
         int day = input("Enter "+ message +"'s day of birth");
-        
         int month = input("Enter "+ message +"'s month of birth");
-        
         int year = input("Enter "+ message +"'s year of birth");
         
         Date date = convertToDate(day, month, year);
@@ -67,9 +67,9 @@ public class HalfAge {
 
     }
     
-    public Date[] dateOrderOlderFirst(){
+    public Date[] dateOrderOlderFirst(Date[] dates){
         
-        Date[] dates = captureDates();
+        
         
         Date date1 = dates[0];
         
@@ -87,12 +87,12 @@ public class HalfAge {
 
     }
     
-    public Date calculations(){
+    public Date calculations(Date[] dates){
         
-        Date[] dates = dateOrderOlderFirst();
+        
         
         long old = dates[0].getTime();
-        long young = dates[0].getTime();
+        long young = dates[1].getTime();
         
         long difference = old - young;
         long finalMill = difference + young;
@@ -103,11 +103,9 @@ public class HalfAge {
         
     }
     
-    public String makeDateReadable(){
+    public String makeDateReadable(Date date){
         
-        Date date = calculations();
-        
-        SimpleDateFormat sdt = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat sdt = new SimpleDateFormat("dd-MM-yyyy");
         
         String output = sdt.format(date);
         
