@@ -14,11 +14,18 @@ public class HalfAge {
     public static void main(String[] args) {
         
         HalfAge halfAge = new HalfAge();
-        String halfDate = "";
-        
-        
+        String halfDate = halfAge.methodCalls();
         
         System.out.println("The younger person will be half the age of the older person on " + halfDate);
+    }
+    
+    public String methodCalls(){
+        
+        Date[] dates = captureDates();
+        dates = dateOrderOlderFirst(dates);
+        Date date = calculations(dates);
+        return makeDateReadable(date);
+     
     }
         
     public Date convertToDate(int day, int month, int year) {
@@ -26,7 +33,7 @@ public class HalfAge {
         Calendar cal = new GregorianCalendar();
         
         cal.set(Calendar.DAY_OF_MONTH, day);
-        cal.set(Calendar.MONTH, month+1);
+        cal.set(Calendar.MONTH, month-1);
         cal.set(Calendar.YEAR, year);
         
         Date date = cal.getTime();
@@ -60,7 +67,6 @@ public class HalfAge {
         Date[] dates = new Date[2];
                 
         dates[0] = captureDate("person1");
-        
         dates[1] = captureDate("person2");
         
         return dates;
@@ -69,10 +75,7 @@ public class HalfAge {
     
     public Date[] dateOrderOlderFirst(Date[] dates){
         
-        
-        
         Date date1 = dates[0];
-        
         Date date2 = dates[1];
       
        
@@ -80,7 +83,6 @@ public class HalfAge {
             
              dates[0] = date2;
              dates[1] = date1;
-  
         }
         
         return dates;
@@ -97,20 +99,16 @@ public class HalfAge {
         long difference = old - young;
         long finalMill = difference + young;
         
-        Date finalDate = new Date(finalMill);
-        
-        return finalDate;
-        
+        return new Date(finalMill);
+         
     }
     
     public String makeDateReadable(Date date){
         
         SimpleDateFormat sdt = new SimpleDateFormat("dd-MM-yyyy");
         
-        String output = sdt.format(date);
-        
-        return output;
-        
-    }
+        return sdt.format(date);
     
+    }
+        
 }
